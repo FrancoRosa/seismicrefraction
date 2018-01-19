@@ -22,9 +22,10 @@ plotTime = 1
 plotLen =  plotTime*1000#Numero de Muestras totales
 getTimer = 1
 plotTimer= 200
-serialPort = "COM17"
+serialPort = "/dev/ttyUSB0"
 threshold = 50
 flagStart = False
+flagWork = True
 ##########################################################
 
 cPort = serial.Serial(port=serialPort,
@@ -63,14 +64,14 @@ win.setCentralWidget(win1)
 
 
 # Simple ADC plot
-fig1 = pg.PlotWidget(title="Medicion de Refraccion Sismica")
+fig1 = pg.PlotWidget(title="Onda de Inicio")
 fig1.setLabel(axis="bottom",text="Tiempo (s)")
 fig1.setLabel(axis="left",text="Amplitud (mV)")
 fig1.showGrid(x=True, y=True)
 fig1.addLegend()
 
 
-fig2 = pg.PlotWidget(title="Medicion de Refraccion Sismica")
+fig2 = pg.PlotWidget(title="Onda de Llegada")
 fig2.setLabel(axis="bottom",text="Tiempo (s)")
 fig2.setLabel(axis="left",text="Amplitud (mV)")
 fig2.showGrid(x=True, y=True)
@@ -123,6 +124,10 @@ def changeTime():
     matrixInit()
 
 def startstop():
+    label.setText("Refraccion Sismica")
+    global flagWork
+    flagWork = True
+    cPort.reset_input_buffer()
     for n in range(plotLen):
         plotX[n]=0
         plotY[n]=0
@@ -175,7 +180,7 @@ t = 0;
 
 def getData():
     global flagPlot,dataX,dataY,dataT,plotX,plotY,plotT,k,t
-    global flagStart
+    global flagStart, flagWork
     #while True:
     rawstring = cPort.readline();
     #try:
@@ -188,7 +193,8 @@ def getData():
             dataY[k]=int(rawY,16)-512
             dataT[k]=t*0.001
             if (dataX[k]>threshold):
-                flagStart=True
+                if flagWork:
+                    flagStart=True
             
             if flagStart:
                 k=k+1
@@ -211,6 +217,12 @@ def getData():
                 t=0
                 flagStart = False
                 flagPlot = False
+                flagWork = False
+                maxY = np.max(plotY)
+                maxYt = np.argmax(plotY)
+                print "Max Data:", maxY
+                print "Get Time:", maxYt
+                label.setText("Refraccion Sismica   Max: %2.2f(mV)    T: %d(ms)"%(maxY,maxYt))
 
             print "k before Reset", k
             k = 0
