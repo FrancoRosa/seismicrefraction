@@ -1,7 +1,7 @@
 ##########################################
       Software de refraccion Sismica
 ##########################################
-El software esta realizado con Python, que es una plataforma de uso libre, de la misma manera el software se probee con esa misma filosofia, que permite a los usuarios hacer las modificaciones que quieran y les dá libertad de compartir el programa
+El software esta realizado con Python, que es una plataforma de uso libre, de la misma manera el software se provee con esa misma filosofia, que permite a los usuarios hacer las modificaciones que quieran y les dá libertad de compartir el programa
 
 Instrucciones de instalacion en  Windows:
 
