@@ -1,6 +1,7 @@
 ##########################################
       Software de refraccion Sismica
 ##########################################
+El software esta realizado con Python, que es una plataforma de uso libre, de la misma manera el software se probee con esa misma filosofia, que permite a los usuarios hacer las modificaciones que quieran y les dá libertad de compartir el programa
 
 Instrucciones de instalacion en  Windows:
 
@@ -16,3 +17,18 @@ Instrucciones de instalacion en  Windows:
 	python-2.7.14.amd64.msi
 
 - Una vez instalados los requerimientos anteriores, buscamos en archivo Seismic50KHz.pyw y al hacerle doble click, podremos acceder al software
+
+
+Nota:
+Los archivos y codigo fuente de este proyecto estan disponibles en linea y pueden descargarse de los link que pongo a continuacion:
+	
+	Interprete Python: https://www.python.org/downloads/release/python-2714/
+			python-2.7.14.amd64.msi
+	
+	Modulos Python: https://www.lfd.uci.edu/~gohlke/pythonlibs/
+			PyQt4-4.11.4-cp27-cp27m-win_amd64.whl
+			pyqtgraph-0.10.0-py2.py3-none-any.whl
+			pyserial-2.7-py2-none-any.whl
+	
+	Software de refraccion: https://github.com/kilometro115/seismicrefraction/tree/50KHzMode 
+			Seismic50KHz.pyw
