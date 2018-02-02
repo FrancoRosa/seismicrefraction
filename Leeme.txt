@@ -12,6 +12,7 @@ Instrucciones de instalacion en  Windows:
 
 - Abrir una ventana de comandos dentro de la carpeta que contiene este archivo e insertar los siguientes comandos uno despues de otro:
 	pip install PyQt4-4.11.4-cp27-cp27m-win_amd64.whl
+	pip install numpy‑1.14.0+mkl‑cp27‑cp27m‑win_amd64.whl
 	pip install pyqtgraph-0.10.0-py2.py3-none-any.whl
 	pip install pyserial-2.7-py2-none-any.whl
 	python-2.7.14.amd64.msi
@@ -27,8 +28,13 @@ Los archivos y codigo fuente de este proyecto estan disponibles en linea y puede
 	
 	Modulos Python: https://www.lfd.uci.edu/~gohlke/pythonlibs/
 			PyQt4-4.11.4-cp27-cp27m-win_amd64.whl
+			numpy‑1.14.0+mkl‑cp27‑cp27m‑win_amd64.whl
 			pyqtgraph-0.10.0-py2.py3-none-any.whl
 			pyserial-2.7-py2-none-any.whl
 	
+	Drivers USB para el equipo: https://www.geekfactory.mx/download/driver-ch340-windows/
+			Click en Download
+	
 	Software de refraccion: https://github.com/kilometro115/seismicrefraction/tree/50KHzMode 
 			Seismic50KHz.pyw
+	
