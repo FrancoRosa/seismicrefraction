@@ -6,6 +6,7 @@ import numpy as np
 import pyqtgraph as pg
 import time, serial, csv
 import sys, glob
+import qdarkstyle
 
 ##########################################################
 plotLen =  500#Numero de Muestras totales
@@ -13,6 +14,7 @@ threshold = 50
 ksamples = 50
 msamples = plotLen/ksamples
 geophone = "Out"
+scale = 1
 ##########################################################
 
 
@@ -67,6 +69,7 @@ matrixInit()
 #############################
 app = QtGui.QApplication([])
 win = QtGui.QMainWindow()
+app.setStyleSheet(qdarkstyle.load_stylesheet_pyside())
 win.setWindowTitle('Refraccion Sismica')
 win.resize(1000,600)
 pg.setConfigOptions(antialias=True)
@@ -78,9 +81,9 @@ win.setCentralWidget(win1)
 
 fig2 = pg.PlotWidget(title='<div style="text-align: center;"><span style="color: #FF0; font-size: 14pt;">Refraccion Sismica</span></div>')
 fig2.setLabel(axis="bottom",text="Tiempo",units="ms")
-fig2.setLabel(axis="left",text="Amplitud",units="ms")
+fig2.setLabel(axis="left",text="Amplitud",units="mV")
 fig2.setLabel(axis="top",text='<span style="color: #FF0; font-size: 12pt;">Onda de Llegada</span>')
-fig2.setYRange(-500,500);
+fig2.setYRange(-500/scale,500/scale);
 fig2.showGrid(x=True, y=True)
 
 curve2f1 = fig2.plot(pen='g',name="__G. Llegada")
@@ -176,7 +179,7 @@ def getData():
             outPut = outPut.replace("\r\n","")
             outPut = outPut.split(":")
             index = int(outPut[0]) 
-            value = int(outPut[1])-512
+            value = (int(outPut[1])-512)/scale
             plotY[index]=value
             if index == 499:
                 break
@@ -204,7 +207,7 @@ def savecsv(self):
             writer.writerow(['Geofono:',geoSel.currentText()])
             writer.writerow(['Muestreo:',speedSel.currentText()])
             
-            writer.writerow(['t(ms)','G(mv)'])
+            writer.writerow(['t(ms)','A(mv)'])
             for row in range(plotLen):
                 rawdata = [plotT[row], plotY[row]]
                 writer.writerow(rawdata)
